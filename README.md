@@ -1,0 +1,4 @@
+# timeTrakker
+## Requirements
+Docker 
+Linux
