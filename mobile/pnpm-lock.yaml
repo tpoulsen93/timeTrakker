@@ -12,7 +12,7 @@ specifiers:
   expo-asset: ~8.7.0
   expo-constants: ~14.0.2
   expo-font: ~11.0.1
-  expo-linking: ~3.3.0
+  expo-linking: ~3.3.1
   expo-splash-screen: ~0.17.5
   expo-status-bar: ~1.4.2
   expo-system-ui: ~2.0.1
@@ -37,7 +37,7 @@ dependencies:
   expo-asset: 8.7.0_expo@47.0.13
   expo-constants: 14.0.2_expo@47.0.13
   expo-font: 11.0.1_expo@47.0.13
-  expo-linking: 3.3.0_expo@47.0.13
+  expo-linking: 3.3.1_expo@47.0.13
   expo-splash-screen: 0.17.5_expo@47.0.13
   expo-status-bar: 1.4.2
   expo-system-ui: 2.0.1_expo@47.0.13
@@ -4056,8 +4056,8 @@ packages:
       expo: 47.0.13_@babel+core@7.20.12
     dev: false
 
-  /expo-linking/3.3.0_expo@47.0.13:
-    resolution: {integrity: sha512-wXPzI2kijnql2L2F6i8zP1zINTkYlcRXyh1iV3P6Bt57v6yZiiniZBnb6grJVj19LOmluNs0PYrbX1ZsHBChCg==}
+  /expo-linking/3.3.1_expo@47.0.13:
+    resolution: {integrity: sha512-T3VIZMyZhkBOpHIyfT514rweGZZMbdg1vwavsfAkm6BFJ8G0iNVGbYMTpoUiQ9xdA0ARCcZbXFFb+WhqEUITgQ==}
     dependencies:
       '@types/qs': 6.9.7
       expo-constants: 14.0.2_expo@47.0.13
