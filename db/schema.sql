@@ -1,7 +1,7 @@
 -- drop all constraints to make sure we don't have any relationship errors on creation
-ALTER TABLE IF EXISTS jobs DROP CONSTRAINT business_id;
-ALTER TABLE IF EXISTS payroll DROP CONSTRAINT business_id;
-ALTER TABLE IF EXISTS payroll DROP CONSTRAINT user_id;
+ALTER TABLE IF EXISTS jobs DROP CONSTRAINT jobs_business_id_fkey;
+ALTER TABLE IF EXISTS payroll DROP CONSTRAINT payroll_business_id_fkey;
+ALTER TABLE IF EXISTS payroll DROP CONSTRAINT payroll_user_id_fkey;
 
 -- drop all tables to rebuild them
 DROP TABLE IF EXISTS businesses;
@@ -34,9 +34,7 @@ CREATE TABLE "jobs" (
   address varchar,
   labor_cost int,
   created_at timestamp DEFAULT (now()),
-  CONSTRAINT business_id
-    FOREIGN KEY(id)
-      REFERENCES businesses(id)
+  business_id int NOT NULL REFERENCES businesses(id)
 );
 
 CREATE TABLE "payroll" (
@@ -44,10 +42,6 @@ CREATE TABLE "payroll" (
   hours int,
   submission_date date NOT NULL,
   created_at timestamp DEFAULT (now()),
-  CONSTRAINT business_id
-    FOREIGN KEY(id)
-      REFERENCES businesses(id),
-  CONSTRAINT user_id
-    FOREIGN KEY(id)
-      REFERENCES businesses(id)
+  business_id int NOT NULL REFERENCES businesses(id),
+  user_id int NOT NULL REFERENCES users(id)
 );
