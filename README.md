@@ -26,3 +26,10 @@ The mobile app needs to be run from the host machine
 
 ### server
 `go run main.go`
+
+## To Run
+1. Run Docker Desktop
+2. open VSCode
+3. In VSCode, `File > Open Folder > Show Local > select the timeTrakker directory
+
+VSCode will identify that a dev container is present within the repository and should automatically prompt you to spin up the dev container
