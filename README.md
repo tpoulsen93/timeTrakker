@@ -14,15 +14,10 @@ The mobile app needs to be run from the host machine
 
 ## Applications
 
-### web
+### web & mobile
 `pnpm install`
 
 `pnpm start`
-
-### mobile
-`yarn install`
-
-`yarn start`
 
 ### server
 `go run main.go`
