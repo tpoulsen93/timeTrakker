@@ -8,7 +8,6 @@ npm-debug.*
 *.key
 *.mobileprovision
 *.orig.*
-*/yarn-error.log
 web-build/
 .pnpm-store/
 
