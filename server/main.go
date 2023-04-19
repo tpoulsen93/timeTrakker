@@ -3,11 +3,9 @@ package main
 import (
 	"context"
 	"flag"
-	"fmt"
 	"log"
 	"os"
 
-	"github.com/georgysavva/scany/pgxscan"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/joho/godotenv"
 )
@@ -19,23 +17,33 @@ func main() {
 
 	// if we're in dev mode, load the test environment
 	if *mode {
-		err := godotenv.Load(".testEnv")
+		err := godotenv.Load("../.testEnv")
 		if err != nil {
 			log.Fatalf("Failed to load .testEnv file: %s\n", err)
+		} else {
+			log.Print("Using test environment\n")
 		}
+	} else {
+		log.Print("Using production environment\n")
 	}
 
 	// make a new db connection pool
 	ctx := context.Background()
 	pool, err := pgxpool.New(ctx, os.Getenv("DATABASE_URL"))
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
-		os.Exit(1)
+		log.Fatalf("Unable to connect to database: %v\n", err)
+	} else {
+		log.Print("Successfully connected to the database\n")
 	}
 	defer pool.Close()
 
-	var businesses []*Business
-	pgxscan.Select(ctx, pool, businesses)
+	// ping the database to verify we are connected
+	pingErr := pool.Ping(ctx)
+	if pingErr != nil {
+		log.Fatalf("Failed to ping the database: %v\n", pingErr.Error())
+	} else {
+		log.Print("Successfully pinged the database\n")
+	}
 
 	// router := gin.Default()
 	// router.GET("/albums", getAlbums)

@@ -1,11 +1,43 @@
-#!/bin/bash
+#!/bin/zsh
 
-# start postgresql
+rulem() {
+  if [ $# -eq 0 ]; then
+    echo "Usage: rulem <message> [<rule character>]"
+    return 1
+  fi
+
+  # fill line with ruler characters ($2, default "-"), reset cursor, move 2 cols right, print message
+  printf -v _hr "%*s" $(tput cols) &&
+    echo "" &&
+    echo -en "${_hr// /${2--}}" &&
+    echo -e "\r\033[2C$1" &&
+    echo ""
+}
+
+didSucceed() {
+  if (( $? == 0 )); then
+    echo "SUCCESS"
+  else
+    echo "FAIL"
+  fi
+}
+
+rulem "[ setting up postgresql ]" =
+
 sudo service postgresql start
+didSucceed
 
-# add a psql user and create a db
-sudo runuser -l postgres -c "createuser -lds $(whoami)"
+echo "Creating user..."
+sudo runuser -l postgres -c "createuser -w -d -s $(whoami)"
+didSucceed
+
+echo "Creating database..."
 createdb $(whoami)
+didSucceed
 
-# create the tables
+echo "Creating password..."
+psql -c "alter user $(whoami) with password 'secret';"
+didSucceed
+
+echo "Creating tables..."
 psql -f db/schema.sql

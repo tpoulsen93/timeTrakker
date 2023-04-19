@@ -1,4 +1,4 @@
-module github.com/tpoulsen93/timeTrakker/server
+module server
 
 go 1.20
 
