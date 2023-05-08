@@ -1,8 +1,8 @@
 package db
 
 type Business struct {
-	id      int
-	name    string
-	address string
-	phone   string
+	ID      int    `db: "id"`
+	Name    string `db: "name`
+	Address string `db: "address"`
+	Phone   string `db: "phone"`
 }
