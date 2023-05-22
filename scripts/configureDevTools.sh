@@ -41,3 +41,8 @@ didSucceed
 
 echo "Creating tables..."
 psql -f db/schema.sql
+didSucceed
+
+echo "Creating fake data..."
+psql -f db/fakeData.sql
+didSucceed
